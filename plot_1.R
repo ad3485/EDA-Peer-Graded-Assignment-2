@@ -1,0 +1,8 @@
+getwd()
+readRDS("Source_Classification_Code.rds")
+readRDS("summarySCC_PM25.rds")
+head(NEI)
+head(SCC[,c("SCC", "Short.Name")])
+total_emissions <- aggregate(Emissions ~ year, NEI, FUN = sum)
+colors <- 2:(length(total_emissions$year)+1)
+with(total_emissions, barplot(height=Emissions/1000, names.arg = year, col = colors, xlab = "Year", ylab = expression('PM'[2.5]*' in Kilotons'),main = expression('Annual Emission between 1999-2008')))
